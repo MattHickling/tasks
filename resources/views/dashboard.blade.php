@@ -11,7 +11,6 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
 
-                    <!-- Link to task list -->
                     <div class="mt-4">
                         <a href="{{ route('tasks.index') }}" class="text-blue-500 hover:underline">{{ __('Go to Task List') }}</a>
 
