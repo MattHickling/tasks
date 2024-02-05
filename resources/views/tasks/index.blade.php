@@ -12,13 +12,29 @@
     <h1>Task List</h1>
     <ul>
         @foreach ($tasks as $task)
-            <li>{{ $task->name }} - Created by: {{ $task->user->name }}</li>
+            <li>
+                {{ $task->name }} - Created by: {{ $task->user->name }}
+                <form action="{{ route('tasks.destroy', $task) }}" method="post" class="delete-form">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+            </li>
         @endforeach
     </ul>
-    <form action="/tasks" method="post">
+    <form action="{{ route('tasks.destroy', $task) }}" method="post" class="delete-form">
         @csrf
-        <input type="text" name="name" placeholder="Enter task name">
-        <button type="submit">Add Task</button>
+        @method('delete')
+        <button type="submit" class="delete-button">Delete</button>
     </form>
+
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#task_description',
+            plugins: 'advlist autolink lists link image charmap print preview anchor',
+            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | link image'
+        });
+    </script>
 </body>
 </html>

@@ -31,4 +31,13 @@ class TaskController extends Controller
         return back();
     }
 
+    public function destroy(Task $task)
+    {
+        $this->authorize('delete', $task); 
+        
+        $task->delete();
+
+        return back();
+    }
+
 }
