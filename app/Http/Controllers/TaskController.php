@@ -22,10 +22,6 @@ class TaskController extends Controller
 
         $user = auth()->user();
 
-        $task = $user->tasks()->create([
-            'name' => $request->name,
-        ]);
-
         $cleanName = strip_tags($request->name);
 
         $task = $user->tasks()->create([
