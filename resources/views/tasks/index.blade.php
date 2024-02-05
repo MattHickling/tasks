@@ -14,18 +14,20 @@
         @foreach ($tasks as $task)
             <li>
                 {{ $task->name }} - Created by: {{ $task->user->name }}
-                <form action="{{ route('tasks.destroy', $task) }}" method="post" class="delete-form">
-                    @csrf
-                    @method('delete')
-                    <button type="submit" class="delete-button">Delete</button>
-                </form>
+                @if($tasks->isNotEmpty())
+                    <form action="{{ route('tasks.destroy', $tasks->first()) }}" method="post" class="delete-form">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="delete-button">Delete First Task</button>
+                    </form>
+                @endif
             </li>
         @endforeach
     </ul>
-    <form action="{{ route('tasks.destroy', $task) }}" method="post" class="delete-form">
+    <form action="{{ route('tasks.store') }}" method="post">
         @csrf
-        @method('delete')
-        <button type="submit" class="delete-button">Delete</button>
+        <textarea id="task_description" name="name"></textarea>
+        <button type="submit">Add Task</button>
     </form>
 
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>

@@ -26,6 +26,12 @@ class TaskController extends Controller
             'name' => $request->name,
         ]);
 
+        $cleanName = strip_tags($request->name);
+
+        $task = $user->tasks()->create([
+            'name' => $cleanName,
+        ]);
+
         event(new TaskCreated($task, $user));
 
         return back();
@@ -33,7 +39,7 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        $this->authorize('delete', $task); 
+        $this->authorize('delete', $task);
         
         $task->delete();
 
