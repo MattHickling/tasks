@@ -12,9 +12,15 @@
                     {{ __("You're logged in!") }}
 
                     <div class="mt-4">
-                        <a href="{{ route('tasks.index') }}" class="text-blue-500 hover:underline">{{ __('Go to Task List') }}</a>
-
+                        <a href="{{ route('tasks.index') }}" class="text-blue-500 hover:underline">{{ __('Go to Task List') }}
+                        </a>
                     </div>
+                    <div>
+                        <a href="{{ route('calendar.index') }}" class="btn btn-primary mb-4">
+                            Go to Calendar
+                        </a>
+                    </div>
+                    
                 </div>
             </div>
         </div>
